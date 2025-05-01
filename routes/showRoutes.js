@@ -1,27 +1,25 @@
-// routes/showRoutes.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-
-let shows = [
-  { id: 1, title: 'Гамлет', description: 'Классическая трагедия Шекспира' },
-];
+const db = require("../models");
 
 // Получить все спектакли
-router.get('/api/shows', (req, res) => {
-  res.json(shows);
+router.get("/api/shows", async (req, res) => {
+  try {
+    const shows = await db.Performance.findAll();
+    res.json(shows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 // Добавить новый спектакль
-router.post('/api/shows', (req, res) => {
-  const newShow = {
-    id: Date.now(),
-    title: req.body.title,
-    description: req.body.description
-  };
-  shows.push(newShow);
-  res.status(201).json(newShow);
+router.post("/api/shows", async (req, res) => {
+  try {
+    const show = await db.Performance.create(req.body);
+    res.status(201).json(show);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
-
-// И другие маршруты...
 
 module.exports = router;

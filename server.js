@@ -7,6 +7,8 @@ const morgan = require('morgan');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const showRoutes = require('./routes/showRoutes');
+app.use(showRoutes);
 // Middleware
 app.use(cors());
 app.use(morgan('dev'));

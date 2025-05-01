@@ -9,12 +9,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const showRoutes = require('./routes/showRoutes');
-app.use(showRoutes);
+
 // Middleware
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
-
+app.use(showRoutes);
 // Пример маршрута
 app.get('/api', (req, res) => {
   res.json({ message: 'Добро пожаловать на сервер театральных билетов!' });

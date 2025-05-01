@@ -21,13 +21,7 @@ app.get('/api', (req, res) => {
 });
 
 // Маршрут для спектаклей
-app.get('/api/shows', (req, res) => {
-  const shows = [
-    { id: 1, title: 'Гамлет', date: '2025-04-10' },
-    { id: 2, title: 'Ромео и Джульетта', date: '2025-04-12' }
-  ];
-  res.json(shows);
-});
+
 
 // Запуск сервера
 app.listen(PORT, '0.0.0.0', () => {
